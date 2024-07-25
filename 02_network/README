@@ -10,6 +10,8 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' WOR
 # get an index.html in WORKSHOP_CURL from WORKSHOP_APACHE
 curl http://172.17.0.2:80/index.html
 
+---
+
 # create a network
 docker network create WORKSHOP_NET
 docker network ls
