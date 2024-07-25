@@ -1,0 +1,20 @@
+# build a container from image.
+docker build -t workshop-apache-ubuntu .
+
+# run docker container
+docker run --rm -it -p 8080:80 --name WORKSHOP_APACHE workshop-apache-ubuntu
+
+# see running containers
+docker ps
+
+# get container PID
+docker top WORKSHOP_APACHE
+
+# see PID in top
+top | grep -w "<PID>"
+
+# see stats
+docker stats
+
+## customization
+docker run --rm -it -p 8080:80 --memory="512m" --cpus="0.5" --name WORKSHOP_APACHE workshop-apache-ubuntu

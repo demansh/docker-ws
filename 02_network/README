@@ -1,0 +1,20 @@
+# build new docker image with ubuntu and curl
+docker build -t workshop-curl-ubuntu .
+
+# run docker container
+docker run --rm -it --name WORKSHOP_CURL workshop-curl-ubuntu
+
+# find ip of container with apache running
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' WORKSHOP_APACHE
+
+# get an index.html in WORKSHOP_CURL from WORKSHOP_APACHE
+curl http://172.17.0.2:80/index.html
+
+# create a network
+docker network create WORKSHOP_NET
+docker network ls
+
+# run containers attached to the WORKSHOP_NET network
+docker run --rm -it -p 8080:80 --name WORKSHOP_APACHE --network WORKSHOP_NET workshop-apache-ubuntu
+docker run --rm -it --name WORKSHOP_CURL --network WORKSHOP_NET workshop-curl-ubuntu
+curl http://WORKSHOP_APACHE

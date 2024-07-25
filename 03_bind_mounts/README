@@ -1,0 +1,2 @@
+# run container with bind mount
+docker run --rm -d --name WORKSOP_SITE -p 8080:80 -v ./public_html:/usr/local/apache2/htdocs/ httpd:2.4
